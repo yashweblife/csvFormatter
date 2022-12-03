@@ -4,13 +4,13 @@
 # Use the global variables to make changes 
 
 import csv
-
+import random
 input_file_name = "Course_info.csv"  # file to read data from
 output_file_name = "test.csv"  # file to output altered version into
 query_limiter = 500000  # number of rows to alter
 target_row = 10  # target row to alter
 value_to_replace_with = "Null"  # value to alter with
-
+randomized_selector_toggle = False
 
 def writer(f, r):
     with open(output_file_name, 'w', encoding='UTF-8') as fs:
@@ -22,6 +22,7 @@ def writer(f, r):
 def main():
     fields = []
     rows = []
+    random.seed(432412)
     with open(input_file_name, "r", encoding='UTF-8') as fs:
         reader = csv.reader(fs)
         print(reader)
@@ -35,7 +36,9 @@ def main():
             return ()
 
         for index in range(0, query_limiter):
-            if (index % 2 == 0):
+            if(randomized_selector_toggle == True):
+                rows[index][target_row] = value_to_replace_with
+            elif (index % 2 == 0):
                 rows[index][target_row] = value_to_replace_with
         writer(fields, rows)
 
