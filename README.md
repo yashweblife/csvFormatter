@@ -10,3 +10,4 @@ To run the project
 - `query_limiter` number of rows to alter
 - `target_row` target row to alter
 - `value_to_replace_with` # value to alter with
+- `randomized_selector_toggle` set to true to randomly change row value
